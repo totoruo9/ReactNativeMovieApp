@@ -9,7 +9,7 @@ import Vertical from "../../components/Vertical";
 const {width:WIDTH, height:HEIGHT} = Dimensions.get("window");
 
 const SliderContainer = styled.View`
-    width: ${WIDTH}px;
+    width: 100%;
     height: ${HEIGHT / 3}px;
     margin-bottom: 50px;
 `;
@@ -49,7 +49,7 @@ export default ({loading, nowPlaying, popular}) => {
                         </SliderContainer>
                         <Container>
                             <Title title={"Popular Movies"} />
-                            <ScrollView horizontal>
+                            <ScrollView style={{marginTop:16}} contentContainerStyle={{paddingLeft: 24}} horizontal showsHorizontalScrollIndicator={false}>
                                 {popular.map(movie => <Vertical key={movie.id} poster={movie.poster_path} title={movie.original_title} votes={movie.vote_average} />)}
                             </ScrollView>
                         </Container>
