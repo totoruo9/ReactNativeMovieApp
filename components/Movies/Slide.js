@@ -5,6 +5,7 @@ import { Dimensions, TouchableOpacity } from "react-native";
 import { apiImage } from "../../api";
 import Poster from "../Poster";
 import Votes from "../Votes";
+import { trimText } from "../../utils";
 
 const Container = styled.View`
     height: 100%;
@@ -63,11 +64,11 @@ const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
         <Container>
             <BG source={{uri: apiImage(backgroundImage)}} />
             <Content>
-                <Poster url={apiImage(poster)} />
+                <Poster url={poster} />
                 <Data>
-                    <Title>{title.length > 40 ? `${title.slice(0,40)}...` : title}</Title>
+                    <Title>{trimText(title, 15)}</Title>
                     <VoteContainer><Votes votes={votes} /></VoteContainer>
-                    <Overview>{overview.length > 100 ? `${overview.slice(0,100)}...` : overview}</Overview>
+                    <Overview>{trimText(overview, 100)}</Overview>
                     <TouchableOpacity>
                         <Button>
                             <ButtonText>View Text</ButtonText>
@@ -84,7 +85,8 @@ Slider.propTypes = {
     title: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired
+    overview: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired
 }
 
 export default Slider;
