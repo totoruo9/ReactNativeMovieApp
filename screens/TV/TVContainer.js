@@ -12,7 +12,8 @@ const TV = () => {
         topRated: [],
         topRatedError: null,
         popular: [],
-        popularError: null
+        popularError: null,
+        loading: true
     });
 
     const getData = async() => {
@@ -29,7 +30,8 @@ const TV = () => {
             topRated,
             topRatedError,
             popular,
-            popularError
+            popularError,
+            loading:false
         })
     }
 

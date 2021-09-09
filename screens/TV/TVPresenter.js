@@ -37,7 +37,7 @@ const TVPresenter = ({loading, today, popular, topRated, thisWeek}) => (
                         title={show.name}
                         overview={show.overview}
                         votes={show.vote_average}
-                        backgroundImage={show.backdrop_path}
+                        backgroundImage={show.backdrop_path || "../../assets/noFoundPoster.png"}
                         poster={show.poster_path}
                     />)
                 }
