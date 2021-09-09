@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {View, Text} from "react-native";
-import { tvApi } from "../api";
+import { tvApi } from "../../api";
+import TVPresenter from "./TVPresenter";
 
 const TV = () => {
     const [shows, setShows] = useState({
@@ -37,9 +38,7 @@ const TV = () => {
     }, [])
 
     return (
-        <View>
-            <Text>{shows.today?.length}</Text>
-        </View>
+        <TVPresenter {...shows}/>
     )
 }
 
