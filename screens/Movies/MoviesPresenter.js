@@ -16,10 +16,10 @@ const Container = styled.View`
 
 `;
 
-export default ({loading, nowPlaying, popular, upcoming}) => {
+export default ({refrashFn, loading, nowPlaying, popular, upcoming}) => {
     return (
         <>
-            <ScrollContainer loading={loading}>
+            <ScrollContainer refrashFn={refrashFn} loading={loading}>
                 <SliderContainer>
                     {nowPlaying.map(movie => 
                         <Slider

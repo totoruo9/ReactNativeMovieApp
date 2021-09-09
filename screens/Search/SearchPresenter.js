@@ -14,7 +14,7 @@ const Text = styled.Text``;
 
 const SearchPresenter = ({keyword, onChange, onSubmit, movies, shows}) => {
     return(
-        <Container>
+        <ScrollContainer loading={false} refrashFn={onSubmit}>
             <Input
                 placeholder={"Write a keyword"}
                 value={keyword}
@@ -49,7 +49,7 @@ const SearchPresenter = ({keyword, onChange, onSubmit, movies, shows}) => {
                     ))}
                 </HorizontalSlider>
             }
-        </Container>
+        </ScrollContainer>
     )
 }
 

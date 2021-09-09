@@ -13,6 +13,7 @@ const SearchContainer = () => {
     });
     const onChange = (text) => setKeyword(text);
     const search = async () => {
+        if(keyword === "") return;
         const [movies, moviesError] = await movieApi.search(keyword);
         const [shows, showsError] = await tvApi.search(keyword);
         setResults({
@@ -22,10 +23,6 @@ const SearchContainer = () => {
             moviesError,
         })
     };
-    console.log(results);
-    // useEffect(()=>{
-    //     search();
-    // }, [])
     
     return (
         <SearchPresenter onChange={onChange} onSubmit={search} keyword={keyword} {...results} />

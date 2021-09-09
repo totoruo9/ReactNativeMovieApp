@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 
 const TextInput = styled.TextInput`
     background-color: #fff;
+    margin: 20px 24px 48px;
+    padding: 8px 16px;
+    border-radius: 18px;
 `;
 
 const Input = ({placeholder, value, onChange, onSubmit}) =>

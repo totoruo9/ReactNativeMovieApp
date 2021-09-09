@@ -40,7 +40,7 @@ const TV = () => {
     }, [])
 
     return (
-        <TVPresenter {...shows}/>
+        <TVPresenter refrashFn={getData} {...shows}/>
     )
 }
 

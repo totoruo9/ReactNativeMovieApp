@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {View, Text, Button} from "react-native";
 import { movieApi } from "../../api";
 import MoviesPresenter from "./MoviesPresenter";
 
@@ -33,7 +32,7 @@ const Movies = ({navigation}) => {
         getData()
     }, []);
 
-    return <MoviesPresenter {...movies} />
+    return <MoviesPresenter refrashFn={getData} {...movies} />
 }
 
 export default Movies;
