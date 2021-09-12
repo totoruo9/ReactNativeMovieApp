@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { movieApi, tvApi } from "../../api";
 import DetailPresenter from "./DetailPresenter";
+import * as WebBrowser from 'expo-web-browser';
 
 
 const DetailContainer =  ({
@@ -11,27 +12,31 @@ const DetailContainer =  ({
     }) => {
     
     const [media, setMedia] = useState({
-        loading:true,
-        id,
-        title,
-        backgroundImage,
-        poster,
-        votes,
-        releaseDate,
-        overview
+        loading: true,
+        media : {
+            id,
+            title,
+            backgroundImage,
+            poster,
+            votes,
+            releaseDate,
+            overview
+        }
     })
     
     const getData = async() => {
         const [getMedia, getMediaError] = isTV ? await tvApi.show(id) : await movieApi.movie(id);
         setMedia({
-            ...getMedia,
             loading:false,
-            title: getMedia.title || getMedia.name,
-            backgroundImage: getMedia.backdrop_path,
-            poster: getMedia.poster_path,
-            overview: getMedia.overview,
-            votes: getMedia.vote_average,
-            releaseDate: getMedia.release_date || null
+            media : {
+                ...getMedia,
+                title: getMedia.title || getMedia.name,
+                backgroundImage: getMedia.backdrop_path,
+                poster: getMedia.poster_path,
+                overview: getMedia.overview,
+                votes: getMedia.vote_average,
+                releaseDate: getMedia.release_date || null
+            }
         })
     }
 
@@ -40,8 +45,12 @@ const DetailContainer =  ({
         getData();
     }, [id])
 
+    const openBrowser = async(url) => {
+        await WebBrowser.openBrowserAsync(url);
+    }
+
     return(
-        <DetailPresenter refrashFn={getData} {...media} />
+        <DetailPresenter openBrowser={openBrowser} refrashFn={getData} {...media} />
     )
 }
 

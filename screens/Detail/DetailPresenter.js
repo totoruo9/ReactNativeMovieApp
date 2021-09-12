@@ -1,7 +1,8 @@
 import React from "react";
-import {Dimensions} from "react-native";
+import {Dimensions, TouchableOpacity} from "react-native";
 import styled from "styled-components/native"
 import { apiImage } from "../../api";
+import DetailLink from "../../components/Detail/DetailLink";
 import Poster from "../../components/Poster";
 import ScrollContainer from "../../components/ScrollContainer";
 import Votes from "../../components/Votes";
@@ -45,7 +46,7 @@ const ReleaseDate = styled.Text`
 `;
 
 const Data = styled.View`
-    padding: 0 24px;
+    padding: 0 24px 80px;
 `;
 
 const DataName = styled.Text`
@@ -62,9 +63,9 @@ const DataValue = styled.Text`
     font-weight: 500;
 `;
 
-const DetailPresenter = (media) => {
+const DetailPresenter = ({media, loading, openBrowser, refrashFn}) => {
     return(
-        <ScrollContainer key={media.id} loading={media.loading} contentContainerStyle={{paddingBottom: 100}}>
+        <ScrollContainer refrashFn={refrashFn} key={media.id} loading={loading} contentContainerStyle={{paddingBottom: 100}}>
             <Header>
                 <BG source={{uri:apiImage(media.backgroundImage, "-")}} />
                 <Container>
@@ -128,6 +129,16 @@ const DetailPresenter = (media) => {
                     <>
                         <DataName>Seasons / Episodes</DataName>
                         <DataValue>{media.number_of_seasons} / {media.number_of_episodes}</DataValue>
+                    </>
+                ) : null}
+                {media.imdb_id ? (
+                    <>
+                        <DataName>Links</DataName>
+                        <DetailLink
+                            onPress={() => openBrowser(`https://www.imdb.com/title/${media.imdb_id}`)}
+                            text={"IMDB Page"}
+                            icon={"imdb"}
+                        />
                     </>
                 ) : null}
             </Data>
