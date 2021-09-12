@@ -13,7 +13,7 @@ export default () => {
             }}
         >
             <Stack.Screen name="Tab" component={Tabs} options={{headerShown:false}} />
-            <Stack.Screen name="Detail" component={Detail} options={{cardStyle:{backgroundColor:"blue"}, headerStyle:{backgroundColor:"red"}}} />
+            <Stack.Screen name="Detail" component={Detail} options={{cardStyle:{backgroundColor:"#333"}, headerStyle:{backgroundColor:"#1c1c1c"}, headerTintColor:"#fff"}} />
         </Stack.Navigator>
     )
 };

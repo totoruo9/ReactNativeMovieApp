@@ -6,6 +6,7 @@ import { apiImage } from "../../api";
 import Poster from "../Poster";
 import Votes from "../Votes";
 import { trimText } from "../../utils";
+import { useNavigation } from "@react-navigation/native";
 
 const Container = styled.View`
     height: 100%;
@@ -60,6 +61,15 @@ const ButtonText = styled.Text`
 
 
 const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
+    const navigation = useNavigation();
+    const goToDetail = () => navigation.navigate({
+        id,
+        title,
+        backgroundImage,
+        votes,
+        overview,
+        poster
+    });
     return (
         <Container>
             <BG source={{uri: apiImage(backgroundImage)}} />
@@ -69,7 +79,7 @@ const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
                     <Title>{trimText(title, 15)}</Title>
                     <VoteContainer><Votes votes={votes} /></VoteContainer>
                     <Overview>{trimText(overview, 100)}</Overview>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={goToDetail}>
                         <Button>
                             <ButtonText>View Text</ButtonText>
                         </Button>
