@@ -20,7 +20,10 @@ const DetailContainer =  ({
             poster,
             votes,
             releaseDate,
-            overview
+            overview,
+            videos: {
+                results: []
+            }
         }
     })
     

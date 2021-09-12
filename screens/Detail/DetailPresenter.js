@@ -89,24 +89,24 @@ const DetailPresenter = ({media, loading, openBrowser, refrashFn}) => {
                         <DataValue>{media.genres.map((genre, index) => `${genre.name}${index === media.spoken_languages.length + 1 ? "" : ", "}`)}</DataValue>
                     </>
                 ) : null}
-                {media.spoken_languages && (
+                {media.spoken_languages ? (
                     <>
                         <DataName>Languages</DataName>
                         <DataValue>{media.spoken_languages.map((lang, index) => `${lang.name}${index === media.spoken_languages.length + 1 ? "" : ", "}`)}</DataValue>
                     </>
-                )}
-                {media.release_date && (
+                ) : null}
+                {media.release_date ? (
                     <>
                         <DataName>Release Date</DataName>
                         <DataValue>{formatDate(media.release_date)}</DataValue>
                     </>
-                )}
-                {media.status && (
+                ) : null}
+                {media.status ? (
                     <>
                         <DataName>Status</DataName>
                         <DataValue>{media.status}</DataValue>
                     </>
-                )}
+                ) : null}
                 {media.revenue ? (
                     <>
                         <DataName>Revenue</DataName>
@@ -133,7 +133,7 @@ const DetailPresenter = ({media, loading, openBrowser, refrashFn}) => {
                 ) : null}
                 {media.imdb_id ? (
                     <>
-                        <DataName>Links</DataName>
+                        <DataName></DataName>
                         <DetailLink
                             onPress={() => openBrowser(`https://www.imdb.com/title/${media.imdb_id}`)}
                             text={"IMDB Page"}
@@ -141,6 +141,17 @@ const DetailPresenter = ({media, loading, openBrowser, refrashFn}) => {
                         />
                     </>
                 ) : null}
+                {media.videos?.results.length > 0 ? <>
+                    <DataName>Videos</DataName>
+                    {media.videos.results.map((video) =>
+                        <DetailLink
+                            text={video.name}
+                            key={video.id}
+                            icon="youtube-play"
+                            onPress={() => openBrowser(`https://www.youtube.com/watch?v=${video.key}`)}
+                        />)
+                    }
+                </> : null}
             </Data>
         </ScrollContainer>
     )

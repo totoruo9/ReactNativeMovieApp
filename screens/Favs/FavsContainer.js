@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {View, Text} from "react-native";
-import { movieApi } from "../api";
+import { movieApi } from "../../api";
+import FavsPresenter from "./FavsPresenter";
 
-const Favs = () => {
+const FavsContainer = () => {
     const [movies, setMovies] = useState({
         results: [],
         error: null
@@ -21,10 +21,8 @@ const Favs = () => {
     }, [])
 
     return (
-        <View>
-            <Text>{movies.results?.length}</Text>
-        </View>
+        <FavsPresenter {...movies} />
     )
 }
 
-export default Favs;
+export default FavsContainer;
