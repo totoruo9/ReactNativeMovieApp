@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Animated, Dimensions, PanResponder } from "react-native";
 import styled from "styled-components/native";
 import { apiImage } from "../../api";
@@ -25,28 +25,55 @@ const styles = {
 }
 
 const FavsPresenter = ({results}) => {
+    const [topIndex, setTopIndex] = useState(0);
     const position = new Animated.ValueXY();
     const panResponser = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderMove: (evt, {dx, dy}) => {
             position.setValue({x:dx, y:dy});
-        } 
+        },
+        onPanResponderRelease: () => {
+            Animated.spring(position, {
+                toValue:{
+                    x:0,
+                    y:0
+                },
+                bounciness: 12,
+                useNativeDriver:true
+            }).start();
+        }
     })
 
     return(
         <Container>
-            {results.reverse().map(result =>(
-                <Animated.View
-                    style={{
-                        ...styles,
-                        transform: [...position.getTranslateTransform()]
-                    }}
-                    key={result.id}
-                    {...panResponser.panHandlers}
-                >
-                    <Poster source={{uri: apiImage(result.poster_path)}} />
-                </Animated.View>
-            ))}
+            {results.reverse().map((result, index) =>{
+                if(index===topIndex){
+                    return (
+                        <Animated.View
+                            style={{
+                                ...styles,
+                                zIndex:1,
+                                transform: [...position.getTranslateTransform()]
+                            }}
+                            key={result.id}
+                            {...panResponser.panHandlers}
+                        >
+                            <Poster source={{uri: apiImage(result.poster_path)}} />
+                        </Animated.View>
+                    )
+                }
+                return (
+                    <Animated.View
+                        style={{
+                            ...styles
+                        }}
+                        key={result.id}
+                        {...panResponser.panHandlers}
+                    >
+                        <Poster source={{uri: apiImage(result.poster_path)}} />
+                    </Animated.View>
+                )
+            })}
         </Container>
     )
 } 
