@@ -23,6 +23,7 @@ const List = ({title, children, horizon=false}) => (
                         overview={media.overview}
                         releaseDate = {media.release_date && media.releaseDate}
                         horizon={horizon}
+                        backgroundImage={media.backdrop_path}
                     />
                 )}
             </Container>
@@ -40,6 +41,7 @@ const List = ({title, children, horizon=false}) => (
                         poster={media.poster_path}
                         title={media.original_title ? media.original_title : media.original_name}
                         votes={media.vote_average}
+                        backgroundImage={media.backdrop_path}
                     />))
                 }
             </ScrollView>

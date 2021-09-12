@@ -21,7 +21,7 @@ const Data = styled.View`
 const Title = styled.Text`
     color: #fff;
     font-weight: bold;
-    font-size: ${props => { console.log(props.horizon); return(props.horizon ? "16px" : "14px")}};
+    font-size: ${props => props.horizon ? "16px" : "14px"};
     margin: ${props => props.horizon ? "0 0 8px 0" : "4px 0"};
 `;
 const ReleaseDate = styled.Text`
@@ -34,7 +34,7 @@ const Overview = styled.Text`
     color:#fff;
 `;
 
-const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=false, votes=null}) => {
+const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=false, votes=null, backgroundImage}) => {
     const navigation = useNavigation();
     const goToDetail = () => {
         navigation.navigate("Detail", {
@@ -43,7 +43,8 @@ const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=fals
             poster,
             overview,
             releaseDate,
-            votes
+            votes,
+            backgroundImage
         })
     }
     return(

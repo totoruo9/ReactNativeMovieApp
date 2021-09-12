@@ -62,14 +62,16 @@ const ButtonText = styled.Text`
 
 const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
     const navigation = useNavigation();
-    const goToDetail = () => navigation.navigate({
-        id,
-        title,
-        backgroundImage,
-        votes,
-        overview,
-        poster
-    });
+    const goToDetail = () => {
+        navigation.navigate("Detail", {
+            id,
+            title,
+            poster,
+            overview,
+            votes,
+            backgroundImage
+        })
+    }
     return (
         <Container>
             <BG source={{uri: apiImage(backgroundImage)}} />
