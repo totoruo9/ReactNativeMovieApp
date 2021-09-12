@@ -34,7 +34,7 @@ const Overview = styled.Text`
     color:#fff;
 `;
 
-const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=false, votes=null, backgroundImage}) => {
+const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=false, votes=null, backgroundImage, isTV}) => {
     const navigation = useNavigation();
     const goToDetail = () => {
         navigation.navigate("Detail", {
@@ -44,7 +44,8 @@ const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=fals
             overview,
             releaseDate,
             votes,
-            backgroundImage
+            backgroundImage,
+            isTV
         })
     }
     return(
@@ -54,7 +55,7 @@ const Media = ({id, title, poster, overview=null, releaseDate=null, horizon=fals
                 <Data horizon={horizon}>
                     <Title horizon={horizon}>{ horizon ? trimText(title, 30) : trimText(title, 10)}</Title>
                     {releaseDate ? <ReleaseDate>{formatDate(releaseDate)}</ReleaseDate> : null}
-                    {overview ? <Overview>{trimText(overview, 120)}</Overview> : null}
+                    {overview && horizon ? <Overview>{trimText(overview, 120)}</Overview> : null}
                     {votes > 0 ? <Votes votes={votes} /> : null}
                 </Data>
             </Container>

@@ -25,7 +25,6 @@ export default function App() {
   const loadAssets = () => {
     const images = cacheImages([
       "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-      // ,require("./assets/noFoundPoster.png")
       ,require("./assets/splash.png")
     ]);
     const fonts = cacheFonts([Ionicons.font]);

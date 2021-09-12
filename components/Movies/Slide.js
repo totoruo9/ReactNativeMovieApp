@@ -60,7 +60,7 @@ const ButtonText = styled.Text`
 `;
 
 
-const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
+const Slider = ({id, title, backgroundImage, votes, overview, poster, isTV}) => {
     const navigation = useNavigation();
     const goToDetail = () => {
         navigation.navigate("Detail", {
@@ -69,7 +69,8 @@ const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
             poster,
             overview,
             votes,
-            backgroundImage
+            backgroundImage,
+            isTV
         })
     }
     return (
@@ -78,7 +79,7 @@ const Slider = ({id, title, backgroundImage, votes, overview, poster}) => {
             <Content>
                 <Poster url={poster} />
                 <Data>
-                    <Title>{trimText(title, 15)}</Title>
+                    <Title>{trimText(title, 12)}</Title>
                     <VoteContainer><Votes votes={votes} /></VoteContainer>
                     <Overview>{trimText(overview, 100)}</Overview>
                     <TouchableOpacity onPress={goToDetail}>

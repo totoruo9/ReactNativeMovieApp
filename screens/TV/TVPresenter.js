@@ -12,10 +12,10 @@ const TVPresenter = ({refrashFn, loading, today, popular, topRated, thisWeek}) =
     
     <ScrollContainer refrashFn={refrashFn} loading={loading}>
         <Container>
-            <List title={"Popular Shows"} children={popular} />
-            <SliderContainer children={thisWeek} />
-            <List title={"Top Rated"} children={topRated} />
-            <List title={"Airing Today"} children={today} horizon={true} />
+            <List title={"Popular Shows"} children={popular} isTV={true} />
+            <SliderContainer children={thisWeek} isTV={true} />
+            <List title={"Top Rated"} children={topRated} isTV={true} />
+            <List title={"Airing Today"} children={today} horizon={true} isTV={true} />
         </Container>
     </ScrollContainer>
 )

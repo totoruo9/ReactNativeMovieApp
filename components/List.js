@@ -9,7 +9,7 @@ const Container = styled.View`
     margin-top: 16px;
 `;
 
-const List = ({title, children, horizon=false}) => (
+const List = ({title, children, horizon=false, isTV=false}) => (
     <>
         <Title title={title} />
         {horizon ? (
@@ -20,10 +20,11 @@ const List = ({title, children, horizon=false}) => (
                         id={media.id}
                         title={media.title ? media.title : media.name}
                         poster={media.poster_path}
-                        overview={media.overview}
-                        releaseDate = {media.release_date && media.releaseDate}
+                        overview={media.overview && media.overview}
+                        releaseDate = {media.release_date && media.release_date}
                         horizon={horizon}
-                        backgroundImage={media.backdrop_path}
+                        backgroundImage={media.backdrop_path && media.backdrop_path}
+                        isTV={isTV}
                     />
                 )}
             </Container>
@@ -39,9 +40,11 @@ const List = ({title, children, horizon=false}) => (
                         key={media.id}
                         id={media.id}
                         poster={media.poster_path}
-                        title={media.original_title ? media.original_title : media.original_name}
+                        title={media.title ? media.title : media.name}
                         votes={media.vote_average}
                         backgroundImage={media.backdrop_path}
+                        overview={media.overview && media.overview}
+                        isTV={isTV}
                     />))
                 }
             </ScrollView>

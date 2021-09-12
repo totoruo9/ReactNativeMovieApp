@@ -26,7 +26,7 @@ const SearchPresenter = ({keyword, onChange, onSubmit, movies, shows}) => {
             }
             {
                 shows.length !== 0
-                &&<List title={"TV results"} children={shows} />
+                &&<List title={"TV results"} children={shows} isTV={true} />
             }
         </ScrollContainer>
     )

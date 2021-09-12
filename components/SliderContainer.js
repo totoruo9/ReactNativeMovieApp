@@ -12,7 +12,7 @@ const Container = styled.View`
     margin-bottom: 32px;
 `;
 
-const SliderContainer = ({children}) => (
+const SliderContainer = ({children, isTV=false}) => (
     <Container>
         <Swiper controlsEnabled={false} loop timeout={3}>
             {children.map(media =>
@@ -24,6 +24,7 @@ const SliderContainer = ({children}) => (
                     votes={media.vote_average}
                     backgroundImage={media.backdrop_path || "../../assets/noFoundPoster.png"}
                     poster={media.poster_path}
+                    isTV={isTV}
                 />)
             }
         </Swiper>
